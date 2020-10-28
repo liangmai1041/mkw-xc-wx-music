@@ -102,24 +102,24 @@ Page({
     //     console.log(2);
     //   }, 2000)
     // })
-    let p1 = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log('p1');
-        resolve('p1')
-      }, 2000)
-    })
-    let p2 = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log('p2');
-        resolve('p2')
-      }, 1000)
-    })
-    let p3 = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log('p3');
-        resolve('p3')
-      }, 3000)
-    })
+    // let p1 = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     console.log('p1');
+    //     resolve('p1')
+    //   }, 2000)
+    // })
+    // let p2 = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     console.log('p2');
+    //     resolve('p2')
+    //   }, 1000)
+    // })
+    // let p3 = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     console.log('p3');
+    //     resolve('p3')
+    //   }, 3000)
+    // })
     // Promise.all([p1, p2, p3]).then((res) => {
     //   console.log('全部完成');
     //   console.log(res);
@@ -127,12 +127,28 @@ Page({
     //   console.log('失败');
     //   console.log(err);
     // })
-    Promise.race([p1, p2, p3]).then((res) => {
-      console.log('完成');
-      console.log(res);
-    }).catch((err) => {
-      console.log('失败');
-      console.log(err);
+    // Promise.race([p1, p2, p3]).then((res) => {
+    //   console.log('完成');
+    //   console.log(res);
+    // }).catch((err) => {
+    //   console.log('失败');
+    //   console.log(err);
+    // })
+    // async await ES7
+    // console.log(this.foo());
+    this.foo()
+  },
+  async foo() {
+    console.log('foo');
+    let res = await this.timeout()
+    console.log(res);
+  },
+  timeout() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log(1);
+        resolve('resolved')
+      }, 1000);
     })
   },
 
