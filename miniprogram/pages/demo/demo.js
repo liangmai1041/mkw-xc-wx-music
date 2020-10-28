@@ -62,15 +62,78 @@ Page({
     //   userName,
     //   age: 23,
     // }
-    wx.cloud.callFunction({
-      name: 'login',
-    }).then((res) => {
-      console.log(res)
-      this.setData({
-        openid: res.result.openid
-      })
-    })
+    // wx.cloud.callFunction({
+    //   name: 'login',
+    // }).then((res) => {
+    //   console.log(res)
+    //   this.setData({
+    //     openid: res.result.openid
+    //   })
+    // })
 
+    // // event loop
+    // setTimeout(() => {
+    //   console.log(1);
+    // }, 1000)
+    // console.log(2);
+    // // callback hell
+    // setTimeout(() => {
+    //   console.log(1);
+    //   setTimeout(() => {
+    //     console.log(2);
+    //     setTimeout(() => {
+    //       console.log(3);
+    //     }, 3000)
+    //   }, 2000)
+    // }, 1000)
+    // promise
+    /**
+     * pending
+     * fulfilled
+     * rejected
+     */
+    // new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     console.log(1);
+    //     resolve()
+    //   }, 1000)
+    // }).then((res) => {
+    //   setTimeout(() => {
+    //     console.log(2);
+    //   }, 2000)
+    // })
+    let p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('p1');
+        resolve('p1')
+      }, 2000)
+    })
+    let p2 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('p2');
+        resolve('p2')
+      }, 1000)
+    })
+    let p3 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('p3');
+        resolve('p3')
+      }, 3000)
+    })
+    // Promise.all([p1, p2, p3]).then((res) => {
+    //   console.log('全部完成');
+    //   console.log(res);
+    // }).catch((err) => {
+    //   console.log('失败');
+    //   console.log(err);
+    // })
+    Promise.race([p1, p2, p3]).then((res) => {
+      console.log('完成');
+      console.log(res);
+    }).catch((err) => {
+      console.log('失败');
+      console.log(err);
+    })
   },
 
   /**
