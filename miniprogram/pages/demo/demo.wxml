@@ -8,3 +8,6 @@
   <view><checkbox></checkbox>{{item.name}}</view>
 </block>
 <button bind:tap="sortObj">随机排序</button>
+
+<button bind:tap="getMusicInfo">获取音乐信息</button>
+<button bind:tap="getMovieInfo">获取电影信息</button>
