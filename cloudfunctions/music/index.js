@@ -5,6 +5,11 @@ cloud.init()
 
 const TcbRouter = require('tcb-router')
 
+const axios = require('axios')
+
+const BASE_URL = 'https://apis.imooc.com'
+const ICODE = 'icode=63C6A5B9F195BA7B'
+
 // 云函数入口函数
 exports.main = async (event, context) => {
   const app = new TcbRouter({event})
@@ -18,6 +23,11 @@ exports.main = async (event, context) => {
       .then((res) => {
         return res
       })
+  })
+
+  app.router('musiclist', async(ctx, next) => {
+    const res = await axios.get(`${BASE_URL}/playlist/detail?id=${parseInt(event.playlistId)}&${ICODE}`)
+    ctx.body = res.data
   })
 
   return app.serve()
