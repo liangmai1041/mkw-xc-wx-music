@@ -13,9 +13,29 @@ const URL = 'https://apis.imooc.com/personalized?icode=63C6A5B9F195BA7B'
 
 const playlistCollection = db.collection('playlist')
 
+const MAX_LIMIT = 100
+
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const list = await playlistCollection.get()
+  // const list = await playlistCollection.get()
+  const countResult = await playlistCollection.count()
+  const total = countResult.total
+  const batchTimes = Math.ceil(total / MAX_LIMIT)
+  const tasks = []
+  for(let i = 0; i < batchTimes; i++) {
+    let promise = playlistCollection.skip(i * MAX_LIMIT).limit(MAX_LIMIT).get()
+    tasks.push(promise)
+  }
+  let list = {
+    data: []
+  }
+  if(tasks.length > 0) {
+    list = (await Promise.all(tasks)).reduce((acc, cur) => {
+      return {
+        data: acc.data.concat(cur.data)
+      }
+    })
+  }
 
   const { data } = await axios.get(URL)
   if(data.code >= 1000) {
