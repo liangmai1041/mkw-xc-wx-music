@@ -5,22 +5,24 @@ cloud.init()
 
 const db = cloud.database()
 
-const rp = require('request-promise')
+// const rp = require('request-promise')
 
-const URL = 'http://musicapi.xiecheng.live/personalized'
+const axios = require('axios')
+
+const URL = 'https://apis.imooc.com/personalized?icode=63C6A5B9F195BA7B'
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const playlist = await rp(URL).then((res) => {
-    return res
-  })
-  console.log(playlist)
-  for(let i = 0, len = playlist.length; i < len; i++) {
+  const { data } = await axios.get(URL)
+  if(data.code >= 1000) {
+    console.log(data.msg)
+    return 0
+  }
+  const playlist = data.result
+  
+  if(playlist.length > 0) {
     await db.collection('playlist').add({
-      data: {
-        ...playlist[i],
-        createTime: db.serverDate(),
-      }
+      data: [...playlist]
     }).then((res) => {
       console.log('插入成功')
     }).catch((err) => {
