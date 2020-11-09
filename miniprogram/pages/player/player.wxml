@@ -7,3 +7,9 @@
     <image class="player-img" src="{{picUrl}}"></image>
   </view>
 </view>
+
+<view class="control">
+  <text class="iconfont icon-48shangyishou"></text>
+  <text class="iconfont icon-ziyuan"></text>
+  <text class="iconfont icon-49xiayishou"></text>
+</view>
