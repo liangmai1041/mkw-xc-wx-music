@@ -11,7 +11,7 @@ Page({
    */
   data: {
     picUrl: '',
-    isPlay: false,    // false表示不播放，true表示正在播放
+    isPlaying: false,    // false表示不播放，true表示正在播放
   },
 
   /**
@@ -24,6 +24,7 @@ Page({
     this._loadMusicDetail(options.musicId)
   },
   _loadMusicDetail(musicId) {
+    backgroundAudioManager.stop()
     let music = musiclist[nowPlayingIndex]
     console.log(music)
     wx.setNavigationBarTitle({
@@ -31,7 +32,7 @@ Page({
     })
     this.setData({
       picUrl: music.al.picUrl,
-      isPlay: false
+      isPlaying: false
     })
     wx.showLoading({
       title: '加载中',
@@ -52,10 +53,35 @@ Page({
       backgroundAudioManager.epname = music.al.name
 
       this.setData({
-        isPlay: true,
+        isPlaying: true,
       })
       wx.hideLoading()
     })
+  },
+  togglePlaying() {
+    // 正在播放
+    if(this.data.isPlaying) {
+      backgroundAudioManager.pause()
+    } else {
+      backgroundAudioManager.play()
+    }
+    this.setData({
+      isPlaying: !this.data.isPlaying,
+    })
+  },
+  onPrev() {
+    nowPlayingIndex--
+    if(nowPlayingIndex < 0) {
+      nowPlayingIndex = musiclist.length - 1
+    }
+    this._loadMusicDetail(musiclist[nowPlayingIndex].id)
+  },
+  onNext() {
+    nowPlayingIndex++
+    if(nowPlayingIndex === musiclist.length) {
+      nowPlayingIndex = 0
+    }
+    this._loadMusicDetail(musiclist[nowPlayingIndex].id)
   },
 
   /**

@@ -48,6 +48,11 @@
   background: url('https://s3.music.126.net/m/s/img/needle.png?702cf6d95f29e2e594f53a3caab50e12') no-repeat center/contain;
   transform: rotate(-15deg);
   transform-origin: 24rpx 10rpx;
+  transition: transform .5s ease;
+}
+
+.play.player-disc::after {
+  transform: rotate(0deg)
 }
 
 .player-img {
@@ -55,10 +60,15 @@
   height: 368rpx;
   border-radius: 50%;
   position: absolute;
-  left: 50%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  /* left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  /* margin-top: -184rpx;
+  margin-top: 184rpx;
   margin-left: -184rpx; */
 }
 
@@ -82,4 +92,24 @@
 .control .icon-ziyuan, .control .icon-ziyuan1{
   font-size: 100rpx;
   margin: 0 40rpx;
+}
+
+.rotation {
+  animation: rotation 12s linear infinite;
+  -webkit-animation: rotation 12s linear infinite;
+  -moz-animation: rotation 12s linear infinite;
+  -o-animation: rotation 12s linear infinite;
+}
+
+.rotation-paused {
+  animation-play-state: paused;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
