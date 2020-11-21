@@ -10,7 +10,7 @@
 
   <!-- 进度条 -->
   <view class="progress-bar">
-    <m-progress-bar />
+    <m-progress-bar bind:musicEnd="onNext" />
   </view>
   <!-- 控制面板 -->
   <view class="control">
