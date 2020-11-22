@@ -12,6 +12,8 @@ Page({
   data: {
     picUrl: '',
     isPlaying: false,    // false表示不播放，true表示正在播放
+    isLyricShow: false,  // 表示当前歌词是否显示
+    lyric: '',
   },
 
   /**
@@ -56,6 +58,25 @@ Page({
         isPlaying: true,
       })
       wx.hideLoading()
+
+      // 加载歌词
+      wx.cloud.callFunction({
+        name: 'music',
+        data: {
+          musicId,
+          $url: 'lyric',
+        }
+      }).then((res) => {
+        console.log(res);
+        let lyric = '暂无歌词'
+        const lrc = res.result.lrc
+        if(lrc) {
+          lyric = lrc.lyric
+        }
+        this.setData({
+          lyric,
+        })
+      })
     })
   },
   togglePlaying() {
@@ -82,6 +103,11 @@ Page({
       nowPlayingIndex = 0
     }
     this._loadMusicDetail(musiclist[nowPlayingIndex].id)
+  },
+  onChangeLyricShow() {
+    this.setData({
+      isLyricShow: !this.data.isLyricShow,
+    })
   },
 
   /**
