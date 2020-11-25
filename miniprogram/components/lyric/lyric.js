@@ -57,7 +57,7 @@ Component({
    */
   methods: {
     update(currentTime) {
-      console.log(currentTime)
+      // console.log(currentTime)
       let lrcList = this.data.lrcList
       if(lrcList.length === 0) {
         return
