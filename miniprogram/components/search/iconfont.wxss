@@ -15,26 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-fabu:before {
-  content: "\e643";
-}
-
 .icon-sousuo:before {
   content: "\e759";
-}
-
-.icon-48shangyishou:before {
-  content: "\e610";
-}
-
-.icon-49xiayishou:before {
-  content: "\e611";
-}
-
-.icon-ziyuan:before {
-  content: "\e612";
-}
-
-.icon-ziyuan1:before {
-  content: "\e613";
 }

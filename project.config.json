@@ -41,12 +41,6 @@
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -65,8 +59,7 @@
           "query": ""
         },
         {
-          "id": 1,
-          "name": "pages/demo/demo",
+          "name": "demo",
           "pathName": "pages/demo/demo",
           "query": "",
           "scene": null
@@ -76,6 +69,12 @@
           "name": "musiclist",
           "pathName": "pages/musiclist/musiclist",
           "query": "playlistId=4961509273",
+          "scene": null
+        },
+        {
+          "name": "blog",
+          "pathName": "pages/blog/blog",
+          "query": "",
           "scene": null
         }
       ]
