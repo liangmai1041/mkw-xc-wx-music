@@ -11,8 +11,38 @@ Page({
 
   // 发布功能
   onPublish() {
-    this.setData({
-      modalShow: true,
+    // 判断用户是否授权
+    wx.getSetting({
+      success: (res) => {
+        console.log(res);
+        if(res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: (res) => {
+              // console.log(res);
+              this.onLoginSuccess({
+                detail: res.userInfo
+              })
+            },
+          })
+        } else {
+          this.setData({
+            modalShow: true,
+          })
+        }
+      }
+    })
+  },
+  onLoginSuccess(e) {
+    console.log(e)
+    const detail = e.detail
+    wx.navigateTo({
+      url: `../blog-edit/blog-edit?nickName=${detail.nickName}&avatarUrl=${detail.avatarUrl}`,
+    })
+  },
+  onLoginFail(e) {
+    wx.showModal({
+      title: '授权用户才能发布',
+      content: '',
     })
   },
 

@@ -11,11 +11,6 @@
   </view>
 
   <!-- 底部弹出层 -->
-  <m-bottom-modal modalShow="{{modalShow}}">
-    <view slot="slot2">
-      <view>插槽1</view>
-      <button>按钮</button>
-    </view>
-    <view slot="slot1">插槽2</view>
-  </m-bottom-modal>
+  <m-login modalShow="{{modalShow}}" bind:loginsuccess="onLoginSuccess" bind:loginfail="onLoginFail">  
+  </m-login>
 </view>
