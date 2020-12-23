@@ -76,6 +76,12 @@
           "pathName": "pages/blog/blog",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "blog-edit",
+          "pathName": "pages/blog-edit/blog-edit",
+          "query": "nickName=\"Minus_9900\"&avatarUrl=\"https://thirdwx.qlogo.cn/mmopen/vi_32/kvkdZBv12T8z…tnicZQUJYWYHw1Llw0lePBsaZ8dRcR9CibrFibDdK0twg/132\"",
+          "scene": null
         }
       ]
     }
