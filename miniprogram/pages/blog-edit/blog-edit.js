@@ -77,6 +77,28 @@ Page({
       current: e.target.dataset.imgsrc,
     })
   },
+  send() {
+    // 2、数据 -> 云数据库
+    // 数据库：内容、图片fileID、openid、昵称、头像、时间
+    // 1、图片 -> 云存储 fileID 云文件ID
+
+    // 图片上传
+    for(let i = 0, len = this.data.images.length; i < len; i++) {
+      let item = this.data.images[i]
+      // 文件拓展名
+      let suffix = /\.\w+$/.exec(item)[0]
+      wx.cloud.uploadFile({
+        cloudPath: 'blog/' + Date.now() + '-' + Math.random() * 10000000 + suffix,
+        filePath: item,
+        success: (res) => {
+          console.log(res);
+        },
+        fail: (err) => {
+          console.error(err);
+        }
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面加载
