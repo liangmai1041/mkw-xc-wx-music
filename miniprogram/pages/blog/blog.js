@@ -1,4 +1,6 @@
 // pages/blog/blog.js
+// 搜索的关键字
+let keyword = ''
 Page({
 
   /**
@@ -53,6 +55,7 @@ Page({
     wx.cloud.callFunction({
       name: 'blog',
       data: {
+        keyword,
         start,
         count: 6,
         $url: 'list',
@@ -69,6 +72,14 @@ Page({
     wx.navigateTo({
       url: '../../pages/blog-comment/blog-comment?blogId=' + e.target.dataset.blogid ,
     })
+  },
+  onSearch(e) {
+    // console.log(e.detail.keyword);
+    this.setData({
+      blogList: [],
+    })
+    keyword = e.detail.keyword
+    this._loadBlogList(0)
   },
 
   /**
