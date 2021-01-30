@@ -1,7 +1,7 @@
 <!--components/bottom-modal/bottom-modal.wxml-->
 <view class="modal" hidden="{{!modalShow}}">
   <view class="panel">
-    <i class="iconfont icon-shanchu" bind:tap="onClose"></i>
+    <i class="iconfont icon-shachu-xue" bind:tap="onClose"></i>
     <!-- slot插槽 具名插槽 -->
     <slot name="modal-content"></slot>
   </view>
