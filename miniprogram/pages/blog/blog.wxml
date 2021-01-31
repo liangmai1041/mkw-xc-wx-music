@@ -17,6 +17,7 @@
         <m-blog-card blog="{{item}}" data-blogid="{{item._id}}" bind:tap="goComment" />
         <m-blog-ctrl
           blogId="{{item._id}}"
+          blog="{{item}}"
           iconfont="iconfont"
           icon-pinglun="icon-pinglun"
           icon-fenxiang="icon-fenxiang"
