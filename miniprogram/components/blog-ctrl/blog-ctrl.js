@@ -63,14 +63,11 @@ Component({
         content: '',
       })
     },
-    onInput(e) {
-      this.setData({
-        content: e.detail.value,
-      })
-    },
-    onSend() {
+    onSend(e) {
+      console.log(e)
       // 插入数据库
-      let content = this.data.content
+      let formId = e.detail.formId
+      let content = e.detail.value.content
       if(content.trim() === '') {
         wx.showModal({
           title: '评论内容不能为空',
@@ -91,6 +88,19 @@ Component({
           avatarUrl: userInfo.avatarUrl,
         },
       }).then(res => {
+
+        // 推送模板消息
+        wx.cloud.callFunction({
+          name: 'sendMessage',
+          data: {
+            content,
+            formId,
+            blogId: this.properties.blogId,
+          }
+        }).then(res => {
+          console.log(res)
+        })
+        
         wx.hideLoading()
         wx.showToast({
           title: '评论成功',
@@ -100,8 +110,6 @@ Component({
           content: '',
         })
       })
-
-      // 推送模板消息
     },
   }
 })
