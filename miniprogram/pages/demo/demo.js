@@ -156,7 +156,12 @@ Page({
     // })
     // async await ES7
     // console.log(this.foo());
-    this.foo()
+    // this.foo()
+    wx.getUserInfo({
+      success: (res) => {
+        console.log(res)
+      },
+    })
   },
   async foo() {
     console.log('foo');
@@ -169,6 +174,16 @@ Page({
         console.log(1);
         resolve('resolved')
       }, 1000);
+    })
+  },
+  onGetUserInfo(e) {
+    console.log(e)
+  },
+  getOpenid() {
+    wx.cloud.callFunction({
+      name: 'login',
+    }).then(res => {
+      console.log(res);
     })
   },
 
