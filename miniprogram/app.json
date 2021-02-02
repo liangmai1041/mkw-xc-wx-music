@@ -8,7 +8,8 @@
     "pages/player/player",
     "pages/blog-edit/blog-edit",
     "pages/blog-comment/blog-comment",
-    "components/blog-ctrl/blog-ctrl"
+    "pages/profile-playhistory/profile-playhistory",
+    "pages/profile-bloghistory/profile-bloghistory"
   ],
   "requiredBackgroundModes": [
     "audio",
