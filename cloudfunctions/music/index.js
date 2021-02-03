@@ -8,7 +8,7 @@ const TcbRouter = require('tcb-router')
 const axios = require('axios')
 
 const BASE_URL = 'https://apis.imooc.com'
-const ICODE = 'icode=63C6A5B9F195BA7B'
+const ICODE = 'icode=8D9BD940971AB71A'
 
 // 云函数入口函数
 exports.main = async (event, context) => {
